@@ -324,8 +324,20 @@ class _CalculatorState extends State<Calculator> {
       return evaluated.toString();
     } on ExpressionException catch (e) {
       error = e;
+      String msg = e.msg;
       isValidResult = false;
-      return "";
+      if (msg.contains("divide by 0"))
+      {
+        return "Cannot divide by 0";
+      }
+      else if (msg.contains("Missing parameter(s)"))
+      {
+        return "";
+      }
+      else
+      {
+        return "Error";
+      }
     } catch (e) {
       error = e;
       isValidResult = false;
